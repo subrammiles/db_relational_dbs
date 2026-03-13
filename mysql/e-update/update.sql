@@ -1,5 +1,7 @@
 CREATE DATABASE testDB;
 
+GRANT ALL PRIVILEGES ON testDB.* TO 'testuser1'@'localhost';
+
 use testDB;
 
 CREATE TABLE users(
@@ -11,3 +13,7 @@ CREATE TABLE users(
 
 INSERT INTO users (phone,email)
 VALUES ('123456','test@gmail.com');
+
+UPDATE users
+SET email = 'updated@gmail.com'
+WHERE phone = '123456';
