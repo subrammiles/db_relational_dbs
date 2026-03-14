@@ -1,0 +1,4 @@
+# pull the image:
+docker pull container-registry.oracle.com/database/express:21.3.0-xe
+
+#
