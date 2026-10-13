@@ -97,3 +97,44 @@ ORDER BY o.customer_id;
 -- ERROR if a scalar subquery returns more than one row:
 -- SELECT first_name FROM employees WHERE dept_id = (SELECT dept_id FROM departments);
 -- ERROR: more than one row returned by a subquery used as an expression
+
+-- ---------------------------------------------------------------
+-- LATERAL: a FROM-subquery that can see the tables to its left
+-- ---------------------------------------------------------------
+
+-- The 2 most recent orders of every customer (customers without orders are dropped)
+SELECT c.name, r.order_id, r.order_date
+FROM customers c
+CROSS JOIN LATERAL (
+    SELECT o.order_id, o.order_date
+    FROM orders o
+    WHERE o.customer_id = c.customer_id
+    ORDER BY o.order_date DESC
+    LIMIT 2
+) r
+ORDER BY c.name, r.order_date DESC;
+
+-- LEFT JOIN LATERAL keeps customers with no orders (SQL Server: OUTER APPLY)
+SELECT c.name, r.last_order, r.orders, r.spent
+FROM customers c
+LEFT JOIN LATERAL (
+    SELECT MAX(o.order_date)               AS last_order,
+           COUNT(DISTINCT o.order_id)      AS orders,
+           SUM(oi.quantity * oi.unit_price) AS spent
+    FROM orders o
+    JOIN order_items oi ON oi.order_id = o.order_id
+    WHERE o.customer_id = c.customer_id
+) r ON true
+ORDER BY r.spent DESC NULLS LAST;
+
+-- Compute once, reuse by name: each product's best sale and how far it is from the list price
+SELECT p.product_name, p.price, best.top_price, p.price - best.top_price AS discount
+FROM products p
+CROSS JOIN LATERAL (
+    SELECT MAX(oi.unit_price) AS top_price FROM order_items oi WHERE oi.product_id = p.product_id
+) best
+WHERE best.top_price IS NOT NULL;
+
+-- Without LATERAL this is an error: the subquery can't see c
+-- SELECT * FROM customers c, (SELECT * FROM orders o WHERE o.customer_id = c.customer_id) x;
+-- ERROR: invalid reference to FROM-clause entry for table "c"

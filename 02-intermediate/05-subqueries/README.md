@@ -39,6 +39,34 @@ If the subquery returns **any NULL**, `NOT IN` returns **no rows**, because `x N
 - A correlated subquery in `SELECT` runs per row. On large tables, a join with `GROUP BY` or a window function is usually faster.
 - Deeply nested subqueries are hard to read. Use CTEs ([03-advanced/01](../../03-advanced/01-common-table-expressions/)).
 
+## LATERAL joins (CROSS APPLY / OUTER APPLY)
+
+A normal derived table in `FROM` can't refer to other tables in the same `FROM`. A **LATERAL** subquery can: it runs **once per row** of the tables to its left, like a correlated subquery that may return **many rows and many columns**.
+
+```sql
+-- The 2 most recent orders of every customer
+SELECT c.name, r.order_id, r.order_date
+FROM customers c
+CROSS JOIN LATERAL (
+    SELECT o.order_id, o.order_date
+    FROM orders o
+    WHERE o.customer_id = c.customer_id      -- refers to c: only allowed because of LATERAL
+    ORDER BY o.order_date DESC
+    LIMIT 2
+) r;
+```
+
+| Want | PostgreSQL / MySQL 8.0.14+ / Oracle 12c+ | SQL Server (and Oracle 12c+) |
+|---|---|---|
+| Drop left rows with no match (like INNER) | `CROSS JOIN LATERAL (...) x` or `JOIN LATERAL (...) x ON true` | `CROSS APPLY (...) x` |
+| Keep left rows with no match (like LEFT) | `LEFT JOIN LATERAL (...) x ON true` | `OUTER APPLY (...) x` |
+
+Typical uses:
+
+- **Top N per group** with `ORDER BY ... LIMIT n` inside: with an index on `(customer_id, order_date)` this is often the fastest way, because each lookup reads only n index entries.
+- Calling a **set-returning function** per row: `jsonb_array_elements(p.attrs)`, `unnest(...)`, `OPENJSON` (SQL Server), a table function.
+- Computing several values once and reusing them by name in `SELECT`/`WHERE`.
+
 ## Interview questions
 
 1. **What is a correlated subquery?** One that references a column from the outer query, so it's logically evaluated once per outer row.
@@ -47,6 +75,8 @@ If the subquery returns **any NULL**, `NOT IN` returns **no rows**, because `x N
 4. **IN vs EXISTS: which is faster?** Usually equivalent in modern engines. `EXISTS` can stop at the first match; `NOT EXISTS` is the safe choice with NULLs.
 5. **Can a subquery be used in FROM?** Yes, as a derived table; it must have an alias in most databases.
 6. **What happens if a scalar subquery returns two rows?** Runtime error ("more than one row returned by a subquery used as an expression").
+7. **What is a LATERAL join / CROSS APPLY?** A subquery in FROM that may reference columns of tables to its left and runs per row; ideal for top-N-per-group and set-returning functions.
+8. **CROSS APPLY vs OUTER APPLY?** Like INNER vs LEFT join: OUTER APPLY keeps left rows for which the subquery returns nothing.
 
 ## Files
 

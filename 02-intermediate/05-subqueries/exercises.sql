@@ -41,3 +41,30 @@ WHERE EXISTS (
     WHERE oi.order_id = o.order_id AND p.category = 'Electronics'
 )
 ORDER BY order_id;
+
+-- 7. For each department, its single highest-paid employee, using LATERAL
+--    (include departments with no employees, showing NULL).
+SELECT d.dept_name, top.first_name, top.salary
+FROM departments d
+LEFT JOIN LATERAL (
+    SELECT e.first_name, e.salary
+    FROM employees e
+    WHERE e.dept_id = d.dept_id
+    ORDER BY e.salary DESC
+    LIMIT 1
+) top ON true
+ORDER BY d.dept_id;
+
+-- 8. For each product category, the 2 best-selling products by units, using LATERAL.
+SELECT c.category, t.product_name, t.units
+FROM (SELECT DISTINCT category FROM products) c
+CROSS JOIN LATERAL (
+    SELECT p.product_name, SUM(oi.quantity) AS units
+    FROM products p
+    JOIN order_items oi ON oi.product_id = p.product_id
+    WHERE p.category = c.category
+    GROUP BY p.product_name
+    ORDER BY units DESC
+    LIMIT 2
+) t
+ORDER BY c.category, t.units DESC;

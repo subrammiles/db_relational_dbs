@@ -8,7 +8,7 @@
 #   scripts/run-all-postgres.sh 03-advanced  # run only lessons under a folder
 #
 # Every lesson .sql file is run except vendor-specific ones
-# (files whose names start with mysql, oracle or sqlite).
+# (files whose names start with mysql, oracle, sqlite or sqlserver).
 
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -33,6 +33,6 @@ while IFS= read -r f; do
         failed=1
     fi
 done < <(find "$filter" -type f -name '*.sql' \
-            ! -path '*sample-db/*' ! -name 'mysql*' ! -name 'oracle*' ! -name 'sqlite*' | sort)
+            ! -path '*sample-db/*' ! -name 'mysql*' ! -name 'oracle*' ! -name 'sqlite*' ! -name 'sqlserver*' | sort)
 
 exit $failed
