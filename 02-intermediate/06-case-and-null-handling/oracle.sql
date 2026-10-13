@@ -2,7 +2,8 @@
 
 -- DECODE(expr, search1, result1, search2, result2, ..., default)
 -- is Oracle's compact form of a simple CASE.
-SELECT DECODE(1, 2, 'Equal', 'Not Equal') AS result FROM dual;     -- Not Equal
+-- returns 'Not Equal'
+SELECT DECODE(1, 2, 'Equal', 'Not Equal') AS result FROM dual;
 -- equivalent to:
 --   IF 1 = 2 THEN 'Equal' ELSE 'Not Equal' END IF;
 SELECT CASE WHEN 1 = 2 THEN 'Equal' ELSE 'Not Equal' END AS result FROM dual;

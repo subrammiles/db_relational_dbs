@@ -39,7 +39,8 @@ WHEN NOT MATCHED THEN
     WHERE f.discontinued = 'N';
 
 COMMIT;
-SELECT * FROM products ORDER BY product_id;   -- 1 updated, 2 untouched, 3 deleted, 4 inserted
+-- 1 updated, 2 untouched, 3 deleted, 4 inserted
+SELECT * FROM products ORDER BY product_id;
 
 -- Single-row upsert: use DUAL as the source
 MERGE INTO products p

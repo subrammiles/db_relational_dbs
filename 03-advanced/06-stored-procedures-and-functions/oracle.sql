@@ -4,7 +4,8 @@
 -- procedures, functions, packages and exception handling.
 -- In SQL*Plus / SQL Developer, end each PL/SQL block with a line containing only "/".
 
-SET SERVEROUTPUT ON;     -- show DBMS_OUTPUT.PUT_LINE output
+-- show DBMS_OUTPUT.PUT_LINE output
+SET SERVEROUTPUT ON;
 
 -- ---------------------------------------------------------------
 -- 1. Anonymous block: Hello World
@@ -35,7 +36,8 @@ SELECT * FROM dual;
 COMMIT;
 
 DECLARE
-    v_name  employee.full_name%TYPE;   -- same type as the column, so it can never be too short
+    -- same type as the column, so it can never be too short
+    v_name  employee.full_name%TYPE;
     a       NUMBER(2) := 10;
 BEGIN
     IF a < 20 THEN
@@ -45,7 +47,8 @@ BEGIN
     ELSE
         v_name := 'nobody';
     END IF;
-    DBMS_OUTPUT.PUT_LINE(v_name);      -- Samantha
+    -- Samantha
+    DBMS_OUTPUT.PUT_LINE(v_name);
 END;
 /
 

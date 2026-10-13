@@ -31,12 +31,14 @@ The prompt changes to `sqlite>`.
 
 ## Load the sample database
 
+`schema.sql` starts with a PostgreSQL-only `SET` and uses `DROP TABLE ... CASCADE`, which SQLite rejects (and sqlite3 stops at the first error). Filter those lines out, on a fresh database file:
+
 ```bash
-sqlite3 sqltutorial.db "PRAGMA foreign_keys = ON;" \
-  ".read sample-db/schema.sql" ".read sample-db/seed.sql"
+grep -v -e '^SET ' -e '^DROP TABLE' sample-db/schema.sql | sqlite3 sqltutorial.db
+sqlite3 sqltutorial.db "PRAGMA foreign_keys = ON;" ".read sample-db/seed.sql"
 ```
 
-SQLite reports an error on the PostgreSQL-only `SET` on line 1 and on `CASCADE` in the `DROP` lines; the tables are still created. On a fresh file you can skip `schema.sql`'s `DROP`s entirely.
+To start over, delete `sqltutorial.db` and run both commands again.
 
 ## Example table with an auto-increment key
 

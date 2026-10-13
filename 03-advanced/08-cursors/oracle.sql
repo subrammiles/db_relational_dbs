@@ -22,7 +22,8 @@ COMMIT;
 -- ---------------------------------------------------------------
 BEGIN
     UPDATE employee SET salary = salary + 1000 WHERE dept = 'IT';
-    DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT || ' rows updated');      -- 2
+    -- 2
+    DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT || ' rows updated');
     IF SQL%NOTFOUND THEN
         DBMS_OUTPUT.PUT_LINE('nothing updated');
     END IF;

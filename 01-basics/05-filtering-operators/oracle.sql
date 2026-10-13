@@ -18,8 +18,10 @@ INSERT ALL
 SELECT * FROM dual;
 
 -- LIKE is case-sensitive in Oracle:
-SELECT * FROM employee WHERE full_name LIKE 'sa%';     -- 0 rows
-SELECT * FROM employee WHERE full_name LIKE 'Sa%';     -- Samantha
+-- 0 rows
+SELECT * FROM employee WHERE full_name LIKE 'sa%';
+-- Samantha
+SELECT * FROM employee WHERE full_name LIKE 'Sa%';
 
 -- Case-insensitive options
 SELECT * FROM employee WHERE UPPER(full_name) LIKE 'SA%';

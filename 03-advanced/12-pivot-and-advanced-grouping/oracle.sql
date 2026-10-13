@@ -38,8 +38,8 @@ UNPIVOT (amount FOR quarter IN (q1 AS 'Q1', q2 AS 'Q2', q3 AS 'Q3', q4 AS 'Q4'))
 ORDER BY region, quarter;
 
 -- ROLLUP with labels
-SELECT DECODE(GROUPING(region), 1, 'ALL', region)       AS region,
-       DECODE(GROUPING(quarter), 1, 'TOTAL', quarter)   AS quarter,
+SELECT DECODE(GROUPING(region), 1, 'ALL', region)       AS region_label,
+       DECODE(GROUPING(quarter), 1, 'TOTAL', quarter)   AS quarter_label,
        SUM(amount)                                      AS amount
 FROM sales
 GROUP BY ROLLUP (region, quarter)

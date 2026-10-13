@@ -71,6 +71,6 @@ The SQL is written for PostgreSQL but is close to standard:
 
 | Database | What to change |
 |---|---|
-| MySQL 8 | Remove `CASCADE` from the `DROP TABLE` lines. Everything else works. |
-| SQLite | Works as-is (`NUMERIC` and `VARCHAR` are accepted; types are not enforced). Run `PRAGMA foreign_keys = ON;` first. |
+| MySQL 8 | Skip line 1 (the PostgreSQL `SET`): `sed '1d' sample-db/schema.sql \| mysql ...`. MySQL accepts and ignores `CASCADE`. See [00-setup/mysql.md](../00-setup/mysql.md). |
+| SQLite | Drop the `SET` and `DROP TABLE` lines; the tables themselves load as-is (types aren't enforced). See [00-setup/sqlite.md](../00-setup/sqlite.md). |
 | Oracle | `VARCHAR` → `VARCHAR2`, `NUMERIC` → `NUMBER`, `INT` → `NUMBER(10)`, dates as `DATE '2025-01-10'`, and `DROP TABLE x CASCADE CONSTRAINTS` (no `IF EXISTS` before 23c). |

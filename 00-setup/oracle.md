@@ -76,9 +76,11 @@ SELECT * FROM dual;                   -- one-row dummy table, e.g. SELECT SYSDAT
 ## Oracle habits to know
 
 - Every `SELECT` needs a `FROM`; use `dual` for expressions: `SELECT 1 + 1 FROM dual;`
-- DML is not auto-committed in SQL*Plus. Run `COMMIT;` or your changes vanish when you disconnect.
+- DML is not auto-committed: other sessions don't see your changes until `COMMIT;`. SQL*Plus commits on a normal `EXIT`, but a dropped connection rolls back.
 - Empty string `''` **is** `NULL` in Oracle.
 - Inserting several rows: `INSERT ALL INTO t (...) VALUES (...) INTO t (...) VALUES (...) SELECT * FROM dual;` (23c also accepts multi-row `VALUES`).
 - `SET SERVEROUTPUT ON` before running PL/SQL that calls `dbms_output.put_line`.
+- In SQL*Plus, don't put a `-- comment` after the `;` on the same line (`SELECT 1 FROM dual; -- note` fails with ORA-00933). Put comments on their own line.
+- End every PL/SQL block (`BEGIN ... END;`, `CREATE PROCEDURE`, `CREATE TRIGGER`) with a line containing only `/`.
 
 See [sample-db/README.md](../sample-db/README.md) for how to adapt the sample schema to Oracle types.

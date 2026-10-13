@@ -31,6 +31,7 @@ COMMIT;
 -- Undo uncommitted work
 UPDATE employee SET full_name = 'Oops';
 ROLLBACK;
-SELECT * FROM employee;      -- names unchanged
+-- names unchanged
+SELECT * FROM employee;
 
 DROP TABLE employee;

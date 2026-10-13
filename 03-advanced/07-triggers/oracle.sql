@@ -54,8 +54,10 @@ UPDATE employee SET salary = 55000 WHERE emp_id = 1;
 -- UPDATE employee SET salary = 1 WHERE emp_id = 1;    -- ORA-20010: Salary cannot be reduced
 COMMIT;
 
-SELECT * FROM employee;       -- full_name is 'Samantha', updated_at filled
-SELECT * FROM salary_audit;   -- 50000 -> 55000
+-- full_name is 'Samantha', updated_at filled
+SELECT * FROM employee;
+-- 50000 -> 55000
+SELECT * FROM salary_audit;
 
 -- One trigger for several events: use INSERTING / UPDATING / DELETING
 CREATE OR REPLACE TRIGGER trg_employee_events
@@ -88,4 +90,5 @@ END;
 SELECT trigger_name, triggering_event, status FROM user_triggers;
 
 DROP TABLE salary_audit;
-DROP TABLE employee;    -- drops its triggers too
+-- drops its triggers too
+DROP TABLE employee;
