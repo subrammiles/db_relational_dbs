@@ -50,7 +50,8 @@ Otherwise write it as one SQL statement (`UPDATE ... FROM`, `MERGE`, `INSERT ...
 ## Files
 
 - [examples.sql](examples.sql): PL/pgSQL cursors
-- [oracle.sql](oracle.sql): PL/SQL explicit cursors, attributes, FOR loops, parameters, REF CURSOR, BULK COLLECT
+- [exercises.sql](exercises.sql)
 - [mysql.sql](mysql.sql): MySQL cursor with a `NOT FOUND` handler
+- [oracle.sql](oracle.sql): PL/SQL explicit cursors, attributes, FOR loops, parameters, REF CURSOR, BULK COLLECT
 
 Next: [09 · Normalization](../09-normalization/)

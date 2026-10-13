@@ -80,6 +80,6 @@ Typical uses:
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql)
+- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [sqlserver.sql](sqlserver.sql)
 
 Next: [06 · CASE and NULL handling](../06-case-and-null-handling/)

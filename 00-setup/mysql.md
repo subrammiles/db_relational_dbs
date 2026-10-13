@@ -46,6 +46,17 @@ sed '1d' sample-db/schema.sql | mysql -u testuser1 -p sqltutorial
 mysql -u testuser1 -p sqltutorial < sample-db/seed.sql
 ```
 
+## Running the lesson `mysql.sql` files
+
+Those files are self-contained: they create their own small tables, and some reuse names like `employees` or `customers` and `DROP` them first. **Run them in a scratch database, not in `sqltutorial`**, so they can't overwrite the sample data:
+
+```bash
+mysql -u testuser1 -p -e "CREATE DATABASE IF NOT EXISTS scratch"
+mysql -u testuser1 -p scratch < 03-advanced/07-triggers/mysql.sql
+```
+
+(Grant the user access to `scratch` first: `GRANT ALL PRIVILEGES ON scratch.* TO 'testuser1'@'localhost';`. Some files also create `testDB` or `joinDB`.)
+
 ## The system databases
 
 `SHOW DATABASES` lists several databases you did not create. Don't modify them by hand.

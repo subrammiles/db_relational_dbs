@@ -81,6 +81,6 @@ A compact simple-CASE. Unlike `=`, `DECODE` treats two NULLs as equal. Prefer `C
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [oracle.sql](oracle.sql)
+- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [oracle.sql](oracle.sql) · [sqlserver.sql](sqlserver.sql)
 
 Next: [07 · Built-in functions](../07-built-in-functions/)

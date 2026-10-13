@@ -56,6 +56,6 @@ Prefer **constraints** for rules they can express (`CHECK`, `FOREIGN KEY`, `UNIQ
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [mysql.sql](mysql.sql) · [oracle.sql](oracle.sql)
+- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [mysql.sql](mysql.sql) · [oracle.sql](oracle.sql) · [sqlserver.sql](sqlserver.sql)
 
 Next: [08 · Cursors](../08-cursors/)

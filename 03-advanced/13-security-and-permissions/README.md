@@ -104,7 +104,8 @@ Escaping quotes by hand is **not** a reliable defence.
 ## Files
 
 - [examples.sql](examples.sql): roles, grants, `SET ROLE` to test them, RLS and a safe-dynamic-SQL function (needs a role with `CREATEROLE`, e.g. `postgres`)
-- [mysql.sql](mysql.sql): users, roles and grants in MySQL
+- [exercises.sql](exercises.sql)
 - [injection-demo.md](injection-demo.md): vulnerable vs parameterised queries in Python, Java and Node
+- [mysql.sql](mysql.sql): users, roles and grants in MySQL
 
 Next: [14 · Partitioning, replication and sharding](../14-partitioning-replication-sharding/)

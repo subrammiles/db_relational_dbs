@@ -88,6 +88,6 @@ CTAS copies columns and data but **not** primary keys, foreign keys or indexes.
 
 - [examples.sql](examples.sql): PostgreSQL examples
 - [exercises.sql](exercises.sql): practice with solutions
-- [mysql.sql](mysql.sql), [oracle.sql](oracle.sql), [sqlite.sql](sqlite.sql): the same ideas in each dialect
+- [mysql.sql](mysql.sql), [oracle.sql](oracle.sql), [sqlite.sql](sqlite.sql), [sqlserver.sql](sqlserver.sql): the same ideas in each dialect
 
 Next: [03 · INSERT](../03-insert/)

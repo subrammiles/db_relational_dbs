@@ -63,6 +63,6 @@ Many applications never `DELETE`; they set `deleted_at = CURRENT_TIMESTAMP` and 
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [mysql.sql](mysql.sql) · [oracle.sql](oracle.sql)
+- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [mysql.sql](mysql.sql) · [oracle.sql](oracle.sql) · [sqlserver.sql](sqlserver.sql)
 
 Next: [09 · ALTER, DROP and TRUNCATE](../09-alter-drop-truncate/)

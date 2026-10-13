@@ -103,5 +103,6 @@ Connection pooling (PgBouncer, HikariCP), caching (Redis) for hot reads, read re
 ## Files
 
 - [examples.sql](examples.sql): plans for scans, the three join algorithms, rewrites and the N+1 pattern
+- [exercises.sql](exercises.sql)
 
 Next: [11 · Upsert and MERGE](../11-upsert-and-merge/)

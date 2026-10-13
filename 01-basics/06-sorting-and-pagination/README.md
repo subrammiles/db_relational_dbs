@@ -61,6 +61,6 @@ Uses an index, stays fast on any page, and is stable while data changes. You can
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [oracle.sql](oracle.sql)
+- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [oracle.sql](oracle.sql) · [sqlserver.sql](sqlserver.sql)
 
 Next: [07 · DISTINCT and aliases](../07-distinct-and-aliases/)

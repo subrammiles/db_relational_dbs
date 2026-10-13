@@ -73,6 +73,6 @@ TO_CHAR / TO_NUMBER / TO_DATE     -- PostgreSQL and Oracle, with format masks
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql)
+- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [sqlserver.sql](sqlserver.sql)
 
 Next: [08 · Constraints and keys](../08-constraints-and-keys/)

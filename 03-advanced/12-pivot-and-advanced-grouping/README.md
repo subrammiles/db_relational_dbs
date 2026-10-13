@@ -67,6 +67,6 @@ CASE WHEN GROUPING(category) = 1 THEN 'ALL' ELSE category END
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [oracle.sql](oracle.sql)
+- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [oracle.sql](oracle.sql) · [sqlserver.sql](sqlserver.sql)
 
 Next: [13 · Security and permissions](../13-security-and-permissions/)

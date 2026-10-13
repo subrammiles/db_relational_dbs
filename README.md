@@ -1,6 +1,6 @@
 # SQL: basic to advanced, for learning and interviews
 
-A hands-on SQL course built around one small sample database. Every lesson has a short explanation, runnable examples, exercises with solutions, and interview questions. PostgreSQL is the main dialect; MySQL, Oracle and SQLite differences are called out in each lesson, with dialect-specific scripts where they matter.
+A hands-on SQL course built around one small sample database. Every lesson has a short explanation, runnable examples, exercises with solutions, and interview questions. PostgreSQL is the main dialect; MySQL, Oracle, SQL Server and SQLite differences are called out in each lesson, with dialect-specific scripts where they matter.
 
 ## Quick start
 
@@ -17,7 +17,7 @@ psql -d sqltutorial -f 01-basics/04-select-and-where/examples.sql
 ## Course map
 
 ### [00 · Setup](00-setup/)
-[PostgreSQL](00-setup/postgres.md) · [MySQL](00-setup/mysql.md) · [Oracle (Docker)](00-setup/oracle.md) · [SQLite](00-setup/sqlite.md) · [Sample database](sample-db/README.md)
+[PostgreSQL](00-setup/postgres.md) · [MySQL](00-setup/mysql.md) · [Oracle (Docker)](00-setup/oracle.md) · [SQL Server (Docker)](00-setup/sqlserver.md) · [SQLite](00-setup/sqlite.md) · [Sample database](sample-db/README.md)
 
 ### [01 · Basics](01-basics/)
 
@@ -41,7 +41,7 @@ psql -d sqltutorial -f 01-basics/04-select-and-where/examples.sql
 | 02 | [GROUP BY and HAVING](02-intermediate/02-group-by-and-having/) | Grouping rules, WHERE vs HAVING, finding duplicates |
 | 03 | [Joins](02-intermediate/03-joins/) | Inner, left, right, full, cross, self, natural, USING, anti/semi joins, pitfalls |
 | 04 | [Set operators](02-intermediate/04-set-operators/) | UNION (ALL), INTERSECT, EXCEPT/MINUS |
-| 05 | [Subqueries](02-intermediate/05-subqueries/) | Scalar, list, derived tables, correlated, EXISTS, ANY/ALL, NOT IN trap |
+| 05 | [Subqueries](02-intermediate/05-subqueries/) | Scalar, list, derived tables, correlated, EXISTS, ANY/ALL, NOT IN trap, LATERAL / CROSS APPLY |
 | 06 | [CASE and NULL handling](02-intermediate/06-case-and-null-handling/) | CASE, COALESCE, NULLIF, NVL, DECODE, conditional aggregation |
 | 07 | [Built-in functions](02-intermediate/07-built-in-functions/) | String, numeric, date and conversion functions across 4 databases |
 | 08 | [Constraints and keys](02-intermediate/08-constraints-and-keys/) | PK, FK actions, UNIQUE, CHECK, DEFAULT, deferrable constraints |
@@ -64,9 +64,11 @@ psql -d sqltutorial -f 01-basics/04-select-and-where/examples.sql
 | 12 | [Pivot and advanced grouping](03-advanced/12-pivot-and-advanced-grouping/) | Pivot/unpivot, ROLLUP, CUBE, GROUPING SETS |
 | 13 | [Security and permissions](03-advanced/13-security-and-permissions/) | Roles, GRANT/REVOKE, row-level security, SQL injection |
 | 14 | [Partitioning, replication, sharding](03-advanced/14-partitioning-replication-sharding/) | Range/list/hash partitions, replicas, shards, CAP, backups |
+| 15 | [JSON](03-advanced/15-json/) | JSONB, extracting, filtering, JSON ↔ rows, indexing, when not to use JSON |
+| 16 | [Data warehousing and SCD](03-advanced/16-data-warehousing-and-scd/) | Star schema, facts and dimensions, date dimension, SCD Types 0–6, ETL/ELT |
 
 ### [04 · Interview preparation](04-interview/)
-[83 theory questions](04-interview/theory-questions.md) · [28 hands-on problems](04-interview/sql-problems.md) · [solutions](04-interview/solutions.sql) · two-week study plan
+[theory questions](04-interview/theory-questions.md) · [28 hands-on problems](04-interview/sql-problems.md) · [solutions](04-interview/solutions.sql) · [schema design](04-interview/schema-design.md) · two-week study plan
 
 ## Lesson layout
 
@@ -75,8 +77,9 @@ NN-topic/
 ├── README.md       concept, syntax, dialect differences, pitfalls, interview questions
 ├── examples.sql    runnable PostgreSQL examples on the sample database
 ├── exercises.sql   practice tasks, each followed by its solution
-├── mysql.sql       the same ideas in MySQL      (where it differs)
-└── oracle.sql      the same ideas in Oracle     (where it differs)
+├── mysql.sql       the same ideas in MySQL      (where it differs; run in a scratch database)
+├── oracle.sql      the same ideas in Oracle     (where it differs; run as a separate user)
+└── sqlserver.sql   the same ideas in T-SQL      (where it differs; runs on the sample database)
 ```
 
 ## Testing the lessons

@@ -58,6 +58,6 @@ WHEN NOT MATCHED THEN INSERT (id, price) VALUES (s.id, s.price);
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [mysql.sql](mysql.sql) · [oracle.sql](oracle.sql)
+- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [mysql.sql](mysql.sql) · [oracle.sql](oracle.sql) · [sqlserver.sql](sqlserver.sql)
 
 Next: [12 · Pivot and advanced grouping](../12-pivot-and-advanced-grouping/)

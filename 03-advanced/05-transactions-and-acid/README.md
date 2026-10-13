@@ -127,8 +127,9 @@ Avoid them by:
 ## Files
 
 - [examples.sql](examples.sql): run in one session
-- [deadlock-demo.md](deadlock-demo.md): two-session demos for isolation and deadlocks
 - [exercises.sql](exercises.sql)
+- [deadlock-demo.md](deadlock-demo.md): two-session demos for isolation and deadlocks
 - [mysql.sql](mysql.sql): the bank transfer in MySQL
+- [sqlserver.sql](sqlserver.sql): `XACT_ABORT` + `TRY/CATCH`, `SAVE TRANSACTION`, locking hints
 
 Next: [06 · Stored procedures and functions](../06-stored-procedures-and-functions/)

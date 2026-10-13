@@ -105,6 +105,20 @@ Short answers you can say out loud. Each section links to the lesson with the fu
 75. **SQL vs NoSQL: when would you choose each?** Relational for structured data, integrity and complex queries; NoSQL for flexible schemas, massive scale or specific access patterns (key-value, documents, graphs).
 76. **What are RPO and RTO?** Acceptable data loss and acceptable downtime after a failure.
 
+## JSON, LATERAL and data warehousing · [JSON](../03-advanced/15-json/) · [warehousing](../03-advanced/16-data-warehousing-and-scd/) · [LATERAL](../02-intermediate/05-subqueries/)
+
+84. **JSON vs JSONB in PostgreSQL?** JSON keeps the exact text and re-parses it; JSONB is a parsed binary form, faster and indexable (GIN), but drops key order and duplicate keys.
+85. **How do you index a JSON field?** Expression index on the extracted value, GIN on the whole JSONB document, generated column + index (MySQL), function-based index (Oracle), computed column + index (SQL Server).
+86. **When should you not store data as JSON?** When fields are stable, filtered or joined often, or need constraints and foreign keys.
+87. **What is a LATERAL join / CROSS APPLY?** A FROM-clause subquery that can reference earlier tables and runs per row; used for top-N per group and set-returning functions.
+88. **Fact table vs dimension table?** Measurable events with foreign keys vs descriptive attributes to group and filter by.
+89. **Star vs snowflake schema?** Denormalised dimensions (fewer joins) vs normalised dimensions.
+90. **What is the grain of a fact table?** What one row represents; decide it first.
+91. **Explain SCD Types 1, 2 and 3.** Overwrite / add a new row per version with validity dates / keep the previous value in an extra column.
+92. **How do you implement SCD Type 2?** Surrogate key + business key + valid_from/valid_to/is_current; expire the changed current row and insert a new version in one transaction.
+93. **ETL vs ELT?** Transform before loading vs load raw and transform inside the warehouse.
+94. **Additive vs semi-additive measure?** Can be summed across every dimension vs not across time (balances, stock levels).
+
 ## Vendor-specific quick facts
 
 77. **What is `DUAL` in Oracle?** A one-row dummy table for selecting expressions.
@@ -114,3 +128,9 @@ Short answers you can say out loud. Each section links to the lesson with the fu
 81. **MySQL storage engines?** InnoDB (default; transactions, row locks, FKs) vs MyISAM (no transactions/FKs, table locks).
 82. **PostgreSQL VACUUM?** Reclaims space from dead row versions created by MVCC updates/deletes and updates visibility info.
 83. **`SERIAL` vs `IDENTITY` in PostgreSQL?** SERIAL is a legacy shorthand for a sequence default; IDENTITY is the SQL-standard replacement.
+95. **SQL Server: TOP vs OFFSET/FETCH?** `TOP (n)` limits rows (with `WITH TIES`, `PERCENT`); `OFFSET … FETCH` is the standard pagination syntax and needs `ORDER BY`.
+96. **SQL Server: what are the `inserted` and `deleted` tables?** Pseudo-tables inside triggers (and `OUTPUT`) holding the new and old versions of all affected rows; triggers are statement-level.
+97. **SQL Server: `ISNULL` vs `COALESCE`?** ISNULL takes 2 arguments and returns the first argument's type (can truncate); COALESCE is standard, N arguments, uses the highest-precedence type.
+98. **SQL Server: what does `SET XACT_ABORT ON` do?** Makes any runtime error roll back the whole transaction instead of just the failing statement.
+99. **SQL Server: `#temp` table vs table variable?** Temp tables have statistics and can be indexed, good for larger sets; table variables are batch-scoped and lightweight, good for small sets.
+100. **SQL Server: clustered index?** The table itself stored in key order; one per table; the primary key by default.

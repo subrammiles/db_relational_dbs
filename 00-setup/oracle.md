@@ -83,4 +83,6 @@ SELECT * FROM dual;                   -- one-row dummy table, e.g. SELECT SYSDAT
 - In SQL*Plus, don't put a `-- comment` after the `;` on the same line (`SELECT 1 FROM dual; -- note` fails with ORA-00933). Put comments on their own line.
 - End every PL/SQL block (`BEGIN ... END;`, `CREATE PROCEDURE`, `CREATE TRIGGER`) with a line containing only `/`.
 
+The lesson `oracle.sql` files are self-contained and create their own tables (some named `employee`, `users`, `products`...). Run them as a separate user from the one holding the sample data, or in a fresh schema.
+
 See [sample-db/README.md](../sample-db/README.md) for how to adapt the sample schema to Oracle types.

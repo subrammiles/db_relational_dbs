@@ -89,6 +89,6 @@ Typical uses: org charts, bill of materials (parts of parts), category trees, fo
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [oracle.sql](oracle.sql) (`CONNECT BY`)
+- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [oracle.sql](oracle.sql) · [sqlserver.sql](sqlserver.sql)
 
 Next: [02 · Window functions](../02-window-functions/)

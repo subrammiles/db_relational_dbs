@@ -98,8 +98,10 @@ Common middle ground: keep integrity rules in constraints, data-heavy batch oper
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql)
+- [examples.sql](examples.sql): PL/pgSQL functions, procedures, OUT parameters, safe dynamic SQL
+- [exercises.sql](exercises.sql)
 - [mysql.sql](mysql.sql): procedures with IN/OUT params, error handling with `SIGNAL`
 - [oracle.sql](oracle.sql): PL/SQL basics (anonymous blocks, IF, procedures, functions, packages)
+- [sqlserver.sql](sqlserver.sql): T-SQL scalar and inline table-valued functions, `TRY/CATCH` procedures, `sp_executesql`
 
 Next: [07 · Triggers](../07-triggers/)

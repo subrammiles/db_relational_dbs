@@ -73,4 +73,5 @@ The SQL is written for PostgreSQL but is close to standard:
 |---|---|
 | MySQL 8 | Skip line 1 (the PostgreSQL `SET`): `sed '1d' sample-db/schema.sql \| mysql ...`. MySQL accepts and ignores `CASCADE`. See [00-setup/mysql.md](../00-setup/mysql.md). |
 | SQLite | Drop the `SET` and `DROP TABLE` lines; the tables themselves load as-is (types aren't enforced). See [00-setup/sqlite.md](../00-setup/sqlite.md). |
+| SQL Server | Drop line 1 and the `CASCADE` keywords; `seed.sql` runs unchanged. See [00-setup/sqlserver.md](../00-setup/sqlserver.md). Note: a `UNIQUE` column allows only one NULL in SQL Server. |
 | Oracle | `VARCHAR` → `VARCHAR2`, `NUMERIC` → `NUMBER`, `INT` → `NUMBER(10)`, dates as `DATE '2025-01-10'`, and `DROP TABLE x CASCADE CONSTRAINTS` (no `IF EXISTS` before 23c). |

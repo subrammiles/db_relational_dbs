@@ -88,5 +88,6 @@ Normalize OLTP (transactional) systems to 3NF by default; denormalize specific h
 ## Files
 
 - [examples.sql](examples.sql): normalises the flat table above step by step
+- [exercises.sql](exercises.sql)
 
 Next: [10 · Query optimization](../10-query-optimization/)

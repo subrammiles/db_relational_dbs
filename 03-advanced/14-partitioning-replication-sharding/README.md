@@ -100,5 +100,6 @@ Know your **RPO** (how much data you can lose) and **RTO** (how long recovery ma
 ## Files
 
 - [examples.sql](examples.sql): range, list and hash partitioning with pruning in PostgreSQL
+- [exercises.sql](exercises.sql)
 
-Next: [04-interview](../../04-interview/)
+Next: [15 · JSON](../15-json/)

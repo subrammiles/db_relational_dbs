@@ -90,6 +90,6 @@ SQL conditions can be TRUE, FALSE or **UNKNOWN** (whenever NULL is involved).
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [mysql.sql](mysql.sql) · [oracle.sql](oracle.sql) · [oracle-case-insensitive-search.sql](oracle-case-insensitive-search.sql)
+- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [mysql.sql](mysql.sql) · [oracle-case-insensitive-search.sql](oracle-case-insensitive-search.sql) · [oracle.sql](oracle.sql)
 
 Next: [06 · Sorting and pagination](../06-sorting-and-pagination/)

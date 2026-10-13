@@ -61,6 +61,6 @@ Covered in [03-advanced/11-upsert-and-merge](../../03-advanced/11-upsert-and-mer
 
 ## Files
 
-- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [mysql.sql](mysql.sql) · [oracle.sql](oracle.sql)
+- [examples.sql](examples.sql) · [exercises.sql](exercises.sql) · [mysql.sql](mysql.sql) · [oracle.sql](oracle.sql) · [sqlserver.sql](sqlserver.sql)
 
 Next: [04 · SELECT and WHERE](../04-select-and-where/)

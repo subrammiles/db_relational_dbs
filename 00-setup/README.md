@@ -7,6 +7,7 @@ You need one database server to follow the tutorial. **PostgreSQL is recommended
 | [postgres.md](postgres.md) | You are starting out. Every `examples.sql` runs on it unchanged. |
 | [mysql.md](mysql.md) | Your job or project uses MySQL. Lessons point out where MySQL differs. |
 | [oracle.md](oracle.md) | You're preparing for an Oracle / PL/SQL role. Runs in Docker. |
+| [sqlserver.md](sqlserver.md) | Your target jobs use Microsoft SQL Server / T-SQL (.NET, Azure, BI). Runs in Docker. |
 | [sqlite.md](sqlite.md) | You want zero setup. Good for basics; lacks procedures, permissions and some types. |
 
 ## After installing

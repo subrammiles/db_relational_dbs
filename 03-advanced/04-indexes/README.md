@@ -133,5 +133,6 @@ More on reading plans in [10 · Query optimization](../10-query-optimization/).
 - [examples.sql](examples.sql): builds a 200,000-row table and shows plans before and after each index
 - [exercises.sql](exercises.sql)
 - [mysql.sql](mysql.sql): `EXPLAIN` in MySQL (`type: ALL` vs `ref`)
+- [sqlserver.sql](sqlserver.sql): clustered vs nonclustered, `INCLUDE`, filtered indexes, plans and missing-index DMVs
 
 Next: [05 · Transactions and ACID](../05-transactions-and-acid/)
