@@ -1,0 +1,4 @@
+# Local database files created while following the SQLite lessons
+*.db
+*.sqlite
+*.sqlite3

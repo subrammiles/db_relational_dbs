@@ -21,13 +21,15 @@ reset_db() {
     psql_run -f sample-db/seed.sql
 }
 
+errfile=$(mktemp)
+trap 'rm -f "$errfile"' EXIT
 failed=0
 while IFS= read -r f; do
     reset_db
-    if psql_run -f "$f" 2> /tmp/sqltutorial-err.txt; then
+    if psql_run -f "$f" 2> "$errfile"; then
         echo "ok    $f"
     else
-        echo "FAIL  $f"; sed 's/^/      /' /tmp/sqltutorial-err.txt
+        echo "FAIL  $f"; sed 's/^/      /' "$errfile"
         failed=1
     fi
 done < <(find "$filter" -type f -name '*.sql' \

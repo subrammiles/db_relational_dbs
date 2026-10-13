@@ -1,1 +1,0 @@
-describe v$database;

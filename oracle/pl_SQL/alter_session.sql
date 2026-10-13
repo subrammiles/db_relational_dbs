@@ -1,5 +1,0 @@
- 
-BEGIN 
-  EXECUTE IMMEDIATE 'alter session set NLS_COMP=LINGUISTIC' ;
-  EXECUTE IMMEDIATE 'alter session set NLS_SORT=BINARY_AI' ;
-END; 
