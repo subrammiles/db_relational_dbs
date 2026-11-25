@@ -77,4 +77,4 @@ Useful for circular references or swapping unique values within a transaction.
 
 - [examples.sql](examples.sql) · [exercises.sql](exercises.sql)
 
-Next: [03-advanced · Common table expressions](../../03-advanced/01-common-table-expressions/)
+Next: [09 · Dates, times and time zones](../09-dates-and-times/)

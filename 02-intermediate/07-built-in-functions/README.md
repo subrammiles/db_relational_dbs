@@ -50,7 +50,7 @@ Function names differ more between databases than anything else in SQL. This tab
 | Parse text | `TO_DATE('2025-01-31', 'YYYY-MM-DD')` | `STR_TO_DATE('2025-01-31', '%Y-%m-%d')` | `TO_DATE(...)` | `CONVERT(DATE, '2025-01-31')` |
 | Day of week | `EXTRACT(DOW FROM d)` (0 = Sunday) | `DAYOFWEEK(d)` (1 = Sunday) | `TO_CHAR(d, 'D')` | `DATEPART(weekday, d)` |
 
-Use ISO literals (`'2025-01-31'` or `DATE '2025-01-31'`) to avoid locale surprises.
+Use ISO literals (`'2025-01-31'` or `DATE '2025-01-31'`) to avoid locale surprises. Time zones, daylight saving time, date ranges and month arithmetic have their own lesson: [09 · Dates, times and time zones](../09-dates-and-times/).
 
 ## Type conversion
 

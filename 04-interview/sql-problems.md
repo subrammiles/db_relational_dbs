@@ -1,6 +1,6 @@
 # Classic SQL interview problems
 
-Try each one before looking at [solutions.sql](solutions.sql). Problems 1–15 use the [sample database](../sample-db/README.md); 16–28 create their own small tables (also in `solutions.sql`). Each solution is tested against PostgreSQL by `scripts/run-all-postgres.sh`.
+Try each one before looking at [solutions.sql](solutions.sql). Problems 1–15 use the [sample database](../sample-db/README.md); 16–31 create their own small tables (also in `solutions.sql`). Each solution is tested against PostgreSQL by `scripts/run-all-postgres.sh`.
 
 Difficulty: 🟢 easy · 🟡 medium · 🔴 hard
 
@@ -41,6 +41,9 @@ Difficulty: 🟢 easy · 🟡 medium · 🔴 hard
 | 26 | Rank of each score (dense, no gaps), "LeetCode Rank Scores" | 🟢 | `DENSE_RANK()` |
 | 27 | Numbers that appear at least **3 times consecutively** | 🟡 | `LAG` / `LEAD` or self join on id |
 | 28 | Cumulative balance per account from a transactions ledger, and the first time each account went negative | 🟡 | `SUM() OVER (PARTITION BY ... ORDER BY ...)` |
+| 29 | **Sessionize** a clickstream: a new session starts after 30 minutes of inactivity. Number each user's sessions and report their length | 🔴 | `LAG()` → new-session flag → running `SUM()` |
+| 30 | **Funnel**: of users who viewed a product, how many then added to cart, then purchased (in that order)? | 🟡 | `MIN(time) FILTER (...)` per step, compare timestamps |
+| 31 | Hotel bookings that **overlap** another booking for the same room | 🟡 | Self join on `a.start < b.end AND b.start < a.end` |
 
 ## How to answer in an interview
 

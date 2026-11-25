@@ -45,6 +45,7 @@ psql -d sqltutorial -f 01-basics/04-select-and-where/examples.sql
 | 06 | [CASE and NULL handling](02-intermediate/06-case-and-null-handling/) | CASE, COALESCE, NULLIF, NVL, DECODE, conditional aggregation |
 | 07 | [Built-in functions](02-intermediate/07-built-in-functions/) | String, numeric, date and conversion functions across 4 databases |
 | 08 | [Constraints and keys](02-intermediate/08-constraints-and-keys/) | PK, FK actions, UNIQUE, CHECK, DEFAULT, deferrable constraints |
+| 09 | [Dates, times and time zones](02-intermediate/09-dates-and-times/) | TIMESTAMP vs TIMESTAMPTZ, AT TIME ZONE, DST, half-open ranges, month arithmetic, gap filling, overlaps |
 
 ### [03 · Advanced](03-advanced/)
 
@@ -68,7 +69,7 @@ psql -d sqltutorial -f 01-basics/04-select-and-where/examples.sql
 | 16 | [Data warehousing and SCD](03-advanced/16-data-warehousing-and-scd/) | Star schema, facts and dimensions, date dimension, SCD Types 0–6, ETL/ELT |
 
 ### [04 · Interview preparation](04-interview/)
-[theory questions](04-interview/theory-questions.md) · [28 hands-on problems](04-interview/sql-problems.md) · [solutions](04-interview/solutions.sql) · [schema design](04-interview/schema-design.md) · two-week study plan
+[theory questions](04-interview/theory-questions.md) · [31 hands-on problems](04-interview/sql-problems.md) · [solutions](04-interview/solutions.sql) · [schema design](04-interview/schema-design.md) · two-week study plan
 
 ## Lesson layout
 

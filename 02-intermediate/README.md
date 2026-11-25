@@ -12,5 +12,6 @@ Summarising data, combining tables and writing the kinds of queries that make up
 | 06 | [CASE expressions and NULL handling](06-case-and-null-handling/) | [examples.sql](06-case-and-null-handling/examples.sql), [exercises.sql](06-case-and-null-handling/exercises.sql), [oracle.sql](06-case-and-null-handling/oracle.sql), [sqlserver.sql](06-case-and-null-handling/sqlserver.sql) |
 | 07 | [Built-in functions: strings, numbers, dates, conversion](07-built-in-functions/) | [examples.sql](07-built-in-functions/examples.sql), [exercises.sql](07-built-in-functions/exercises.sql), [sqlserver.sql](07-built-in-functions/sqlserver.sql) |
 | 08 | [Constraints and keys](08-constraints-and-keys/) | [examples.sql](08-constraints-and-keys/examples.sql), [exercises.sql](08-constraints-and-keys/exercises.sql) |
+| 09 | [Dates, times and time zones](09-dates-and-times/) | [examples.sql](09-dates-and-times/examples.sql), [exercises.sql](09-dates-and-times/exercises.sql) |
 
 Back to the [course map](../README.md).

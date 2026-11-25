@@ -445,3 +445,86 @@ SELECT account, MIN(txn_time) AS first_negative
 FROM running
 WHERE balance < 0
 GROUP BY account;                            -- account 1 at 2025-01-02 09:00
+
+-- ---------------------------------------------------------------------
+-- 29. Sessionize a clickstream (30-minute inactivity timeout)
+-- ---------------------------------------------------------------------
+CREATE TEMP TABLE clicks (user_id INT, clicked_at TIMESTAMP);
+INSERT INTO clicks VALUES
+    (1, '2025-01-01 09:00'), (1, '2025-01-01 09:10'), (1, '2025-01-01 09:35'),   -- session 1 (gaps of 10, 25 min)
+    (1, '2025-01-01 10:30'), (1, '2025-01-01 10:40'),                            -- session 2 (55-minute gap before)
+    (2, '2025-01-01 09:00'), (2, '2025-01-01 11:00');                            -- two one-click sessions
+
+WITH flagged AS (
+    SELECT user_id, clicked_at,
+           CASE WHEN clicked_at - LAG(clicked_at) OVER (PARTITION BY user_id ORDER BY clicked_at)
+                     <= INTERVAL '30 minutes'
+                THEN 0 ELSE 1 END AS is_new_session        -- first click: LAG is NULL → new session
+    FROM clicks
+), numbered AS (
+    SELECT user_id, clicked_at,
+           SUM(is_new_session) OVER (PARTITION BY user_id ORDER BY clicked_at) AS session_no
+    FROM flagged
+)
+SELECT user_id, session_no,
+       MIN(clicked_at)                   AS session_start,
+       MAX(clicked_at)                   AS session_end,
+       MAX(clicked_at) - MIN(clicked_at) AS duration,
+       COUNT(*)                          AS clicks
+FROM numbered
+GROUP BY user_id, session_no
+ORDER BY user_id, session_no;              -- user 1: 2 sessions (35 min, 10 min); user 2: 2 sessions
+
+-- ---------------------------------------------------------------------
+-- 30. Funnel: view → add to cart → purchase, in that order
+-- ---------------------------------------------------------------------
+CREATE TEMP TABLE user_events (user_id INT, event TEXT, event_at TIMESTAMP);
+INSERT INTO user_events VALUES
+    (1, 'view', '2025-01-01 09:00'), (1, 'cart', '2025-01-01 09:05'), (1, 'purchase', '2025-01-01 09:10'),
+    (2, 'view', '2025-01-01 10:00'), (2, 'cart', '2025-01-01 10:02'),
+    (3, 'view', '2025-01-01 11:00'),
+    (4, 'cart', '2025-01-01 08:00'), (4, 'view', '2025-01-01 12:00'),   -- carted BEFORE viewing: doesn't count
+    (5, 'view', '2025-01-01 13:00'), (5, 'purchase', '2025-01-01 13:30'); -- skipped the cart step
+
+WITH steps AS (
+    SELECT user_id,
+           MIN(event_at) FILTER (WHERE event = 'view') AS viewed_at
+    FROM user_events
+    GROUP BY user_id
+), carted AS (
+    SELECT s.user_id, s.viewed_at,
+           (SELECT MIN(e.event_at) FROM user_events e
+             WHERE e.user_id = s.user_id AND e.event = 'cart' AND e.event_at > s.viewed_at) AS carted_at
+    FROM steps s
+    WHERE s.viewed_at IS NOT NULL
+), purchased AS (
+    SELECT c.*,
+           (SELECT MIN(e.event_at) FROM user_events e
+             WHERE e.user_id = c.user_id AND e.event = 'purchase' AND e.event_at > c.carted_at) AS purchased_at
+    FROM carted c
+)
+SELECT COUNT(*)                                                    AS viewed,      -- 5
+       COUNT(carted_at)                                            AS carted,      -- 2 (users 1, 2)
+       COUNT(purchased_at)                                         AS purchased,   -- 1 (user 1)
+       ROUND(100.0 * COUNT(carted_at)    / COUNT(*), 1)            AS view_to_cart_pct,
+       ROUND(100.0 * COUNT(purchased_at) / NULLIF(COUNT(carted_at), 0), 1) AS cart_to_purchase_pct
+FROM purchased;
+
+-- ---------------------------------------------------------------------
+-- 31. Overlapping hotel bookings for the same room
+-- ---------------------------------------------------------------------
+CREATE TEMP TABLE hotel_bookings (booking_id INT, room INT, check_in DATE, check_out DATE);
+INSERT INTO hotel_bookings VALUES
+    (1, 101, '2025-06-01', '2025-06-04'),
+    (2, 101, '2025-06-04', '2025-06-06'),   -- checks in the day 1 checks out: fine
+    (3, 101, '2025-06-02', '2025-06-03'),   -- entirely inside 1
+    (4, 101, '2025-05-30', '2025-06-10'),   -- contains 1, 2 and 3
+    (5, 102, '2025-06-01', '2025-06-04');
+
+SELECT a.room, a.booking_id, b.booking_id AS overlaps_with
+FROM hotel_bookings a
+JOIN hotel_bookings b ON a.room = b.room
+                     AND a.booking_id < b.booking_id
+                     AND a.check_in  < b.check_out
+                     AND b.check_in  < a.check_out
+ORDER BY 1, 2, 3;                          -- (1,3) (1,4) (2,4) (3,4)
